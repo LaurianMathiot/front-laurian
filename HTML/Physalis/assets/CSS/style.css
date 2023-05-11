@@ -42,18 +42,17 @@ nav a {
 
 #titre {
     height: 40vh;
-    background-image: url(../images/phy.jpeg);
+    background-image: url(../images/bg.jpg);
     background-size: cover;
     background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    
+    color: white;  
 }
 
 #imghome {
-    height : 20vh;
+    height : 30vh;
     width: auto;
 }
 
@@ -65,14 +64,15 @@ h2 {
 
 #qui p {
     text-align: center;
+    padding: 0vw 15vw;
 }
 
 section {
-    padding: 10vh 10vw;
+    padding: 10vh 3vw;
 }
 
 #mission {
-    background-color: #0061a3;
+    background: linear-gradient(-60deg, #004b71,#0061a3);
     color: white;
 }
 
@@ -81,6 +81,29 @@ section {
     justify-content: space-around;
 }
 
-.blocmission {
+h3 {
+    margin-bottom: 20px;
+    font-size: 19px;
+}
 
+#missioncentre {
+    margin: 0px 50px;
+}
+
+.blocmission {
+    border: solid 1px rgba(255, 255, 255, 0.193);
+    background: linear-gradient(#0061a3, #0099e645);
+    border-radius: 10px;
+    width: 30vw;
+}
+
+.blocmission img {
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.missiontxt {
+    padding: 20px;
 }
