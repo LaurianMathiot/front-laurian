@@ -20,6 +20,11 @@
     src: url(../Fonts/Roboto/Roboto-Bold.ttf);
 }
 
+@font-face {
+    font-family: Roboto Medium;
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
 body {
     font-size: 0.5rem;
     background-color: rgb(109, 109, 109);
@@ -27,9 +32,16 @@ body {
 }
 
 h1, h2 {
+    font-size: 1.7rem;
+    margin-bottom: 12px;
+}
+
+h1 {
     font-family: "Roboto Bold" ;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+}
+
+h2 {
+    font-family: "Roboto Medium" ;
 }
 
 p {
@@ -38,7 +50,7 @@ p {
 
 a {
     border-radius: 50px;
-    padding: 5px 15px;
+    padding: 6px 15px;
     display: inline-block;
     font-family: "Roboto Bold";
     margin-top: 15px;
