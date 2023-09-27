@@ -32,30 +32,33 @@ function PhotosGrid() {
     <section className="main-container photos-section homepage-section">
       <h2>Photographies</h2>
       <div className="image-grid">
-        {images.map((image, index) => (
-          <>
-            <article key={index} className="image-card">
-              <img
-                src={image.link}
-                alt={image.description}
-                className="image"
-                onClick={() => openModal(image.link)}
-              />
-              <button className="vote-btn btn">Voter</button>
-            </article>
-            <div id="myModal" class="modal">
-              <button class="close btn" onClick={() => closeModal()}>
-                X
-              </button>
-              <img
-                id="modalImage"
-                class="modal-content"
-                src=""
-                alt="Image agrandie"
-              />
-            </div>
-          </>
-        ))}
+        {images.map(
+          (image, index) =>
+            image.status === "publié" && (
+              <>
+                <article key={index} className="image-card">
+                  <img
+                    src={image.link}
+                    alt={image.description}
+                    className="image"
+                    onClick={() => openModal(image.link)}
+                  />
+                  <button className="vote-btn btn">Voter</button>
+                </article>
+                <div id="myModal" class="modal" onClick={() => closeModal()}>
+                  <button class="close btn" onClick={() => closeModal()}>
+                    X
+                  </button>
+                  <img
+                    id="modalImage"
+                    class="modal-content"
+                    src=""
+                    alt="Image agrandie"
+                  />
+                </div>
+              </>
+            )
+        )}
       </div>
     </section>
   );

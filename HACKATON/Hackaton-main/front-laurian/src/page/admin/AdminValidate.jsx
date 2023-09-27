@@ -6,6 +6,21 @@ import UserFooter from "../../components/user/UserFooter";
 const AdminValidatePhoto = () => {
   const [images, setImages] = useState([]);
 
+  // Fonction pour ouvrir la modale
+  function openModal(imageSrc) {
+    var modal = document.getElementById("myModal");
+    var modalImage = document.getElementById("modalImage");
+
+    modal.style.display = "block";
+    modalImage.src = imageSrc;
+  }
+
+  // Fonction pour fermer la modale
+  function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+
   const fetchValidePhoto = async () => {
     try {
       const responseApi = await fetch("http://localhost:3000/api/picture");
@@ -106,7 +121,7 @@ const AdminValidatePhoto = () => {
     <>
       <AdminHeader />
       <section className="images-validate-section main-container">
-        <h2>Photos en attente de vérification</h2>
+        <h2>Photos en attente de validation</h2>
         <div className="images-validate-grid">
           {imagesNonPubliees.length === 0 ? (
             <div className="validate-nul-msg">
@@ -114,23 +129,40 @@ const AdminValidatePhoto = () => {
             </div>
           ) : (
             imagesNonPubliees.map((image) => (
-              <article key={image.id} className="image-validate-card">
-                <img src={image.link} alt={image.description} />
-                <div className="btns-container flex-center">
-                  <button
-                    className="btn btn-alt"
-                    onClick={() => handleValidation(image.id)}
-                  >
-                    Valider
+              <>
+                <article key={image.id} className="image-validate-card">
+                  <img
+                    src={image.link}
+                    alt={image.description}
+                    onClick={() => openModal(image.link)}
+                  />
+                  <div className="btns-container flex-center">
+                    <button
+                      className="btn btn-alt"
+                      onClick={() => handleValidation(image.id)}
+                    >
+                      Valider
+                    </button>
+                    <button
+                      className="btn btn-alt"
+                      onClick={() => handleDismiss(image.id)}
+                    >
+                      Rejeter
+                    </button>
+                  </div>
+                </article>
+                <div id="myModal" class="modal" onClick={() => closeModal()}>
+                  <button class="close btn" onClick={() => closeModal()}>
+                    X
                   </button>
-                  <button
-                    className="btn btn-alt"
-                    onClick={() => handleDismiss(image.id)}
-                  >
-                    Rejeter
-                  </button>
+                  <img
+                    id="modalImage"
+                    class="modal-content"
+                    src=""
+                    alt="Image agrandie"
+                  />
                 </div>
-              </article>
+              </>
             ))
           )}
         </div>

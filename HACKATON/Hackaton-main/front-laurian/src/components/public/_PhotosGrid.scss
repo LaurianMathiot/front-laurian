@@ -26,7 +26,8 @@
         border-radius: 5px;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        cursor: pointer;
       }
 
       .vote-btn {
@@ -42,37 +43,4 @@
       }
     }
   }
-}
-
-// MODAL
-
-/* Style pour la modale */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  padding: 50px;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-}
-
-/* Style pour l'image agrandie */
-.modal-content {
-  max-width: 80vw;
-  max-height: 80vh;
-  margin: 0 8vw 0 0;
-  border-radius: 5px;
-}
-
-/* Style pour le bouton de fermeture */
-.close {
-  position: absolute;
-  top: 20px;
-  right: 130px;
-  box-shadow: 0 0 5px $grey;
-  cursor: pointer;
 }

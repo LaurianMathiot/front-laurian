@@ -41,33 +41,39 @@ const UserUploadForm = () => {
   };
 
   return (
-    <form className="upload-form blur" onSubmit={handleSubmit}>
-            <h3>Uploader une photo</h3>     {" "}
-      <div className="upload-input flex">
-               {" "}
-        <input
-          type="file"
-          id="file"
-          name="file"
-          onChange={handleImageChange}
-          accept="image/*"
-        />
-             {" "}
+    <section className="bg-upload">
+      <div className="main-container upload-section flex-column-start">
+        <h2>Uploader une photo</h2>{" "}
+        <form
+          className="upload-form form flex-column-start"
+          onSubmit={handleSubmit}
+        >
+          <div className="form-element flex-column-start">
+            <input
+              type="file"
+              id="file"
+              name="file"
+              onChange={handleImageChange}
+              accept="image/*"
+            />
+          </div>
+          <div className="form-element flex-column-start">
+            <label htmlFor="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              className=""
+              name="description"
+              cols="25"
+              rows="4"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <input type="submit" className="submit-btn btn btn-alt" />
+        </form>
       </div>
-           {" "}
-      <div>
-                <label htmlFor="description">Description</label>
-               {" "}
-        <input
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-             {" "}
-      </div>
-            <input type="submit" className="submit-btn" />   {" "}
-    </form>
+    </section>
   );
 };
 
