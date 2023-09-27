@@ -3,6 +3,7 @@
 $grey: rgb(42, 42, 42);
 $lightgrey: rgb(226, 226, 226);
 $green: rgb(0, 121, 91);
+$red: rgb(230, 85, 85);
 
 // FONTS
 
@@ -113,6 +114,10 @@ a {
 
 .homepage-section {
   margin-bottom: 10vh;
+}
+
+.dashboard-main {
+  min-height: 85vh;
 }
 
 // TITLES

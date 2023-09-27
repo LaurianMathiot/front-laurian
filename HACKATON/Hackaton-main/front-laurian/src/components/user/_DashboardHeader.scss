@@ -36,3 +36,16 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .welcome {
+    display: none;
+  }
+  .dashboard-nav {
+    li {
+      p {
+        display: none;
+      }
+    }
+  }
+}
