@@ -13,10 +13,10 @@
     z-index: 1;
   }
 
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px 20px;
+  .masonry {
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // gap: 50px 20px;
 
     .image-card {
       height: 250px;
