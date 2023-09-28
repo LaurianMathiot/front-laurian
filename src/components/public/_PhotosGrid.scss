@@ -44,3 +44,36 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .masonry {
+    column-count: 2 !important;
+    column-gap: 25px;
+    padding: 0 20px !important;
+  }
+  .modal {
+    margin: 0;
+    padding: 10vh 0;
+  }
+
+  .close {
+    right: 10vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .title {
+    transform: scale(0.7);
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .masonry {
+    column-count: 1 !important;
+    column-gap: 15px;
+    padding: 0 10px !important;
+  }
+  .title {
+    transform: scale(0.5);
+  }
+}
