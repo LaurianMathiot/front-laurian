@@ -28,7 +28,7 @@
   }
 
   .masonry {
-    padding: 0 20px;
+    padding: 20px 20px;
     // display: grid;
     // grid-template-columns: repeat(3, 1fr);
     // gap: 20px;
@@ -37,7 +37,8 @@
       margin: auto;
       width: auto;
       height: auto;
-      border: 1px solid $lightgrey;
+      // border: 1px solid $lightgrey;
+      box-shadow: 0 0 10px $lightgrey;
       padding: 10px;
       border-radius: 10px;
 

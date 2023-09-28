@@ -19,15 +19,24 @@
 
   form {
     margin-top: 0;
-    padding: 10px;
     border-radius: 15px;
+    padding: 0 0 20px;
 
     .rdw-editor-toolbar {
       background-color: $green;
-      border-radius: 10px 10px 0 0;
+      border-radius: 14px 14px 0 0;
+      border: 1px solid $green;
+      height: 50px;
+      padding-left: 10px;
+    }
+
+    .DraftEditor-editorContainer {
+      border-bottom: 1px solid $lightgrey;
     }
 
     .public-DraftStyleDefault-block {
+      padding: 0 20px;
+
       span {
         font-family: "Arial" !important;
       }
@@ -49,5 +58,17 @@
   .rdw-emoji-wrapper,
   .rdw-image-wrapper {
     display: none;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .rdw-editor-toolbar {
+    height: 100px !important;
+  }
+}
+
+@media screen and (max-width: 386px) {
+  .rdw-editor-toolbar {
+    height: 150px !important;
   }
 }
