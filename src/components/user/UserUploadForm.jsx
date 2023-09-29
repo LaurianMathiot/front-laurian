@@ -45,18 +45,9 @@ const UserUploadForm = () => {
         },
       });
 
-      if (responseCreate.status === 400) {
-        Swal.fire({
-          title: "Erreur",
-          text: "Le fichier est vide",
-          icon: "error",
-        });
-      } else if (responseCreate.status === 201) {
-        // setImage("");
-        // setDescription("");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
+      if (responseCreate.status === 201) {
+        setImage(null);
+        setDescription("");
         Swal.fire({
           title: "Téléchargement réussi!",
           text: "Votre photo a bien été envoyée",
@@ -66,7 +57,7 @@ const UserUploadForm = () => {
         const errorText = await responseCreate.text();
         Swal.fire({
           title: "Erreur!",
-          text: "Veuillez remplir le champ description",
+          text: "Verifier le fichier, son type et/ou la description",
           icon: "error",
         });
         console.error("Erreur lors de l'envoi de l'image :", errorText);

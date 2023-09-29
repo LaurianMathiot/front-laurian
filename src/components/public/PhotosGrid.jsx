@@ -135,12 +135,14 @@ function PhotosGrid() {
         )}
       </ImageList>
       <Stack spacing={2}>
-        <Pagination
-          count={Math.ceil(images.length / 10)}
-          color="secondary"
-          page={currentPage}
-          onChange={(event, page) => setCurrentPage(page)}
-        />
+        <div className="pagination">
+          <Pagination
+            count={Math.ceil(images.length / 10)}
+            color="success"
+            page={currentPage}
+            onChange={(event, page) => setCurrentPage(page)}
+          />
+        </div>
       </Stack>
     </section>
   );

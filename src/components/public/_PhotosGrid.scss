@@ -2,6 +2,15 @@
   position: relative;
   text-align: center;
 
+  .pagination {
+    margin-top: 3vh;
+    text-align: center;
+
+    & > :first-child {
+      display: inline-block;
+    }
+  }
+
   &::after {
     content: "";
     height: 1px;
