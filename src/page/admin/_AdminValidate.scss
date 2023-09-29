@@ -17,20 +17,27 @@
     z-index: 1;
   }
 
-  .validate-nul-msg {
-    background-color: $green;
-    color: white;
-    padding: 15px;
-    max-width: 300px;
-    margin: 5vh auto;
-    border-radius: 10px;
-    grid-column: 1/4;
-  }
-
   .masonry {
+    padding: 20px 20px;
+    position: relative;
+    min-height: 400px;
     // display: grid;
     // grid-template-columns: repeat(3, 1fr);
     // gap: 20px;
+
+    .validate-nul-msg {
+      background-color: $green;
+      color: white;
+      padding: 15px;
+      max-width: 300px;
+      margin: 5vh auto;
+      border-radius: 10px;
+      grid-column: 1/4;
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      transform: translateX(-50%);
+    }
 
     .image-validate-card {
       margin: auto;

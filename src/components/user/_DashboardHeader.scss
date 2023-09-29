@@ -2,6 +2,10 @@
   padding: 15px;
   background: linear-gradient($lightgrey, rgb(247, 247, 247));
 
+  .welcome {
+    min-width: 115px;
+  }
+
   .homepage-link {
     margin-top: 10px;
     font-size: 0.8rem;

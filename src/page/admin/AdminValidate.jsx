@@ -92,7 +92,7 @@ const AdminValidatePhoto = () => {
         });
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 0);
       } else {
         Swal.fire({
           title: "Erreur!",

@@ -23,6 +23,34 @@ function UserPhotos() {
     modal.style.display = "none";
   }
 
+  // Fonction pour supprimer une photo par son ID
+  const handleDeletePhoto = async (photoId) => {
+    try {
+      const jwt = Cookies.get("jwt");
+      const response = await fetch(
+        `http://localhost:3000/api/picture/${photoId}`,
+        {
+          method: "DELETE",
+          headers: {
+            // "Authorization": `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        // Photo supprimée avec succès, mettez à jour la liste des photos
+        const updatedPhotos = userPhotos.filter(
+          (photo) => photo.id !== photoId
+        );
+        setUserPhotos(updatedPhotos);
+      } else {
+        console.error("Erreur lors de la suppression de la photo.");
+      }
+    } catch (error) {
+      console.error("Une erreur s'est produite :", error);
+    }
+  };
+
   const fetchUserPhotos = async () => {
     try {
       const jwt = Cookies.get("jwt");
@@ -45,6 +73,7 @@ function UserPhotos() {
       console.error("Une erreur s'est produite :", error);
     }
   };
+
   useEffect(() => {
     fetchUserPhotos();
   }, []);
@@ -62,9 +91,8 @@ function UserPhotos() {
           ) : (
             <>
               {userPhotos.map((photo) => (
-                <>
-                  {" "}
-                  <ImageListItem key={photo.id} className="user-photo-card">
+                <div key={photo.id}>
+                  <ImageListItem className="user-photo-card">
                     <img
                       src={photo.link}
                       alt={photo.description}
@@ -78,20 +106,32 @@ function UserPhotos() {
                           <span className="bold">{photo.numberOfVotes}</span>
                         </p>
                       )}
+                      {photo.status === "non publié" && (
+                        <button
+                          className="btn delete-btn"
+                          onClick={() => handleDeletePhoto(photo.id)}
+                        >
+                          Supprimer
+                        </button>
+                      )}
                     </div>
                   </ImageListItem>
-                  <div id="myModal" class="modal" onClick={() => closeModal()}>
-                    <button class="close btn" onClick={() => closeModal()}>
+                  <div
+                    id="myModal"
+                    className="modal"
+                    onClick={() => closeModal()}
+                  >
+                    <button className="close btn" onClick={() => closeModal()}>
                       X
                     </button>
                     <img
                       id="modalImage"
-                      class="modal-content"
+                      className="modal-content"
                       src=""
                       alt="Image agrandie"
                     />
                   </div>
-                </>
+                </div>
               ))}
             </>
           )}

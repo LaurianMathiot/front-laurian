@@ -15,7 +15,7 @@ function AdminTop5() {
   }, []);
 
   return (
-    <div className="...">
+    <div>
       <h2>TOP 5</h2>
       <div className="top5-grid flex-center">
         {images.map((image, index) => (

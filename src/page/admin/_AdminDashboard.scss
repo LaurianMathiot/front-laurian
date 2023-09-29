@@ -24,7 +24,8 @@
 .top5-section {
   position: relative;
   text-align: center;
-  min-height: 300px;
+  min-height: 400px;
+  overflow: hidden;
 
   &::after {
     content: "";
@@ -115,5 +116,27 @@
         font-family: "Montserrat Regular";
       }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .top5-grid {
+    flex-direction: column;
+    text-align: center;
+
+    .top5-card {
+      width: 60vw;
+      height: auto;
+      margin: 0 0 5vh;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .notification-card {
+    text-align: center !important;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 10px !important;
   }
 }

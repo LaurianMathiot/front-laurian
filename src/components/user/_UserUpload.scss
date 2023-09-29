@@ -43,7 +43,25 @@
       }
 
       #file {
-        border: none;
+        border: 1px dashed $lightgrey;
+        padding-top: 100px;
+        margin-top: -70px;
+        cursor: pointer;
+
+        &:active {
+          border-color: $green;
+        }
+      }
+
+      .file-help {
+        margin-top: 50px;
+        text-align: center;
+        color: rgb(187, 190, 196);
+      }
+
+      .dragging {
+        // border: 1px solid $green !important;
+        box-shadow: 0 0 15px rgba(0, 233, 97, 0.277);
       }
 
       input {

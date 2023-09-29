@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ImageList, ImageListItem } from "@mui/material";
+import { ImageList, ImageListItem, Pagination, Stack } from "@mui/material";
 
 function PhotosGrid() {
   const [images, setImages] = useState([]);
   const [votedImages, setVotedImages] = useState([]);
   const [remainingVotes, setRemainingVotes] = useState(3);
   const [AddClass, setAddClass] = useState(null);
-
+  const [currentPage, setCurrentPage] = useState(1);
   localStorage.clear();
 
   // Fonction pour ouvrir la modale
@@ -34,8 +34,11 @@ function PhotosGrid() {
       const j = Math.floor(Math.random() * (i + 1));
       [randomImages[i], randomImages[j]] = [randomImages[j], randomImages[i]];
     }
+    const filterImages = randomImages.filter(
+      (image) => image.status === "publié"
+    );
 
-    setImages(randomImages);
+    setImages(filterImages);
   };
 
   const addVote = async (id, index) => {
@@ -91,7 +94,7 @@ function PhotosGrid() {
       <p className="bold">Votez pour vos photos préférées !</p>
       <p>Vous pouvez voter 3 fois toutes les 24h.</p>
       <ImageList variant="masonry" cols={3} gap={25} className="masonry">
-        {images.map(
+        {images.slice((currentPage - 1) * 10, currentPage * 10).map(
           (image, index) =>
             image.status === "publié" && (
               <>
@@ -131,6 +134,14 @@ function PhotosGrid() {
             )
         )}
       </ImageList>
+      <Stack spacing={2}>
+        <Pagination
+          count={Math.ceil(images.length / 10)}
+          color="secondary"
+          page={currentPage}
+          onChange={(event, page) => setCurrentPage(page)}
+        />
+      </Stack>
     </section>
   );
 }
