@@ -37,11 +37,16 @@
         margin-right: 10px;
       }
 
+      input[type="password"] {
+        width: 250px;
+      }
+
       .password-input-wrap {
         align-items: end;
 
         input {
           border-radius: 5px 0 0 5px;
+          width: 192px;
         }
 
         button {
@@ -82,9 +87,20 @@
 
     .login-redirection {
       text-align: center;
+      margin-bottom: 5vh;
       & > :first-child {
         margin-bottom: 20px;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .full-name {
+    flex-direction: column;
+
+    input {
+      width: 251px;
     }
   }
 }

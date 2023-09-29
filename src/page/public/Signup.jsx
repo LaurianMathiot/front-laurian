@@ -86,7 +86,7 @@ function Signup() {
             className="signup-form flex-column-start"
             onSubmit={HandleSignupSubmit}
           >
-            <div className="flex-between">
+            <div className="flex-between full-name">
               <div className="form-element flex-column-start">
                 <label htmlFor="name">
                   Prénom<span>*</span>
@@ -121,7 +121,7 @@ function Signup() {
             <div className="flex-center password-input-wrap">
               <div className="form-element flex-column-start">
                 <label htmlFor="confirmPassword">
-                  Confirmation du mot de passe<span>*</span>
+                  Confirmer le mot de passe<span>*</span>
                 </label>
                 <input
                   type={showPassword ? "text" : "password"}

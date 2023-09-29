@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserHeader from "../../components/user/UserHeader";
-import Footer from "../../components/public/Footer";
+import UserFooter from "../../components/user/UserFooter";
 import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
 import { ImageList, ImageListItem } from "@mui/material";
@@ -137,7 +137,7 @@ function UserPhotos() {
           )}
         </ImageList>
       </section>
-      <Footer />
+      <UserFooter />
     </>
   );
 }

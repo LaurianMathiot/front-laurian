@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ImageList, ImageListItem, Pagination, Stack } from "@mui/material";
+import { isToday } from "date-fns";
 
 function PhotosGrid() {
   const [images, setImages] = useState([]);
@@ -54,17 +55,19 @@ function PhotosGrid() {
       setRemainingVotes(remainingVotes - 1);
 
       // Informations du vote dans localStorage
-      localStorage.setItem("votedImages", JSON.stringify(votedImages));
-      localStorage.setItem("remainingVotes", remainingVotes - 1);
+      localStorage.setItem("votedImages", JSON.stringify([...votedImages, id]));
 
-      // Réinitialisation du nombre de votes après 24 heures
-      setTimeout(() => {
-        localStorage.removeItem("votedImages");
-        localStorage.removeItem("remainingVotes");
-        setRemainingVotes(3);
-      }, 24 * 60 * 60 * 1000); // 24 heures en millisecondes
+      // Vérification du nombre de votes aujourd'hui
+      const todayVotes = JSON.parse(localStorage.getItem("todayVotes")) || [];
+      todayVotes.push(new Date());
+      localStorage.setItem("todayVotes", JSON.stringify(todayVotes));
 
-      //Add Classe CSS
+      // Vérification si l'utilisateur a atteint le nombre maximal de votes aujourd'hui
+      if (todayVotes.length >= 3) {
+        setRemainingVotes(0); // Aucun vote restant
+      }
+
+      // Add Classe CSS
       setAddClass(index);
 
       setTimeout(() => {
@@ -77,22 +80,24 @@ function PhotosGrid() {
     fetchImages();
 
     // Récupération des informations de vote du stockage local au chargement de la page
-    const storedVotedImages = JSON.parse(localStorage.getItem("votedImages"));
-    const storedRemainingVotes = parseInt(
-      localStorage.getItem("remainingVotes")
-    );
+    const storedVotedImages =
+      JSON.parse(localStorage.getItem("votedImages")) || [];
+    const todayVotes = JSON.parse(localStorage.getItem("todayVotes")) || [];
 
-    if (storedVotedImages && !isNaN(storedRemainingVotes)) {
-      setVotedImages(storedVotedImages);
-      setRemainingVotes(storedRemainingVotes);
+    if (todayVotes.length >= 3) {
+      setRemainingVotes(0); // Aucun vote restant si l'utilisateur a déjà voté trois fois aujourd'hui
+    } else {
+      setRemainingVotes(3 - todayVotes.length); // Calcul du nombre de votes restants
     }
+
+    setVotedImages(storedVotedImages);
   }, []);
 
   return (
     <section className="main-container photos-section homepage-section">
       <h2>Photographies</h2>
       <p className="bold">Votez pour vos photos préférées !</p>
-      <p>Vous pouvez voter 3 fois toutes les 24h.</p>
+      <p>Vous pouvez voter 3 fois par jour.</p>
       <ImageList variant="masonry" cols={3} gap={25} className="masonry">
         {images.slice((currentPage - 1) * 10, currentPage * 10).map(
           (image, index) =>
