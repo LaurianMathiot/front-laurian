@@ -13,7 +13,18 @@ function Banner() {
           </div>
         </div>
         <div className="img-container">
-          <img src="/images/banner-img.png" alt="image-foret" />
+          <img src="/images/cache-accueil.svg" alt="cache-accueil" />
+          <div className="a1 anim-imgs"></div>
+          <div className="a2 anim-imgs"></div>
+          <div className="a3 anim-imgs"></div>
+          <div className="a4 anim-imgs"></div>
+          <div className="b1 anim-imgs"></div>
+          <div className="b2 anim-imgs"></div>
+          <div className="c1 anim-imgs"></div>
+          <div className="c2 anim-imgs"></div>
+          <div className="c3 anim-imgs"></div>
+          <div className="c4 anim-imgs"></div>
+          <img className="bg" src="/images/bg-anim.jpg" alt="photo-accueil" />
         </div>
       </div>
       <div className="scroller">

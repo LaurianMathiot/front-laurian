@@ -93,62 +93,83 @@ function PhotosGrid() {
     setVotedImages(storedVotedImages);
   }, []);
 
+  console.log(images);
+
   return (
     <section className="main-container photos-section homepage-section">
       <h2>Photographies</h2>
       <p className="bold">Votez pour vos photos préférées !</p>
       <p>Vous pouvez voter 3 fois par jour.</p>
-      <ImageList variant="masonry" cols={3} gap={25} className="masonry">
-        {images.slice((currentPage - 1) * 10, currentPage * 10).map(
-          (image, index) =>
-            image.status === "publié" && (
-              <>
-                <ImageListItem key={index} className="image-card">
-                  <img
-                    src={image.link}
-                    alt={image.description}
-                    className="image"
-                    onClick={() => openModal(image.link)}
-                  />
-                  <button
-                    className={`vote-btn btn ${
-                      remainingVotes === 0 ? "disabled" : ""
-                    } ${index === AddClass ? "vote-pop" : ""}`}
-                    onClick={() => addVote(image.id, index)}
-                    disabled={remainingVotes === 0}
-                  >
-                    {remainingVotes === 0 ? "Votes épuisés" : "Voter"}
-                  </button>
-                </ImageListItem>
-                <div
-                  id="myModal"
-                  className="modal"
-                  onClick={() => closeModal()}
-                >
-                  <button className="close btn" onClick={() => closeModal()}>
-                    X
-                  </button>
-                  <img
-                    id="modalImage"
-                    className="modal-content"
-                    src=""
-                    alt="Image agrandie"
-                  />
-                </div>
-              </>
-            )
-        )}
-      </ImageList>
-      <Stack spacing={2}>
-        <div className="pagination">
-          <Pagination
-            count={Math.ceil(images.length / 10)}
-            color="success"
-            page={currentPage}
-            onChange={(event, page) => setCurrentPage(page)}
-          />
+      {images.length === 0 ? (
+        <div className="no-images">
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
+          <div className="skeleton-item"></div>
         </div>
-      </Stack>
+      ) : (
+        <>
+          <ImageList variant="masonry" cols={3} gap={25} className="masonry">
+            {images.slice((currentPage - 1) * 10, currentPage * 10).map(
+              (image, index) =>
+                image.status === "publié" && (
+                  <>
+                    <ImageListItem key={index} className="image-card">
+                      <img
+                        src={image.link}
+                        alt={image.description}
+                        className="image"
+                        onClick={() => openModal(image.link)}
+                      />
+                      <button
+                        className={`vote-btn btn ${
+                          remainingVotes === 0 ? "disabled" : ""
+                        } ${index === AddClass ? "vote-pop" : ""}`}
+                        onClick={() => addVote(image.id, index)}
+                        disabled={remainingVotes === 0}
+                      >
+                        {remainingVotes === 0 ? "Votes épuisés" : "Voter"}
+                      </button>
+                    </ImageListItem>
+                    <div
+                      id="myModal"
+                      className="modal"
+                      onClick={() => closeModal()}
+                    >
+                      <button
+                        className="close btn"
+                        onClick={() => closeModal()}
+                      >
+                        X
+                      </button>
+                      <img
+                        id="modalImage"
+                        className="modal-content"
+                        src=""
+                        alt="Image agrandie"
+                      />
+                    </div>
+                  </>
+                )
+            )}
+          </ImageList>
+          <Stack spacing={2}>
+            <div className="pagination">
+              <Pagination
+                count={Math.ceil(images.length / 10)}
+                color="success"
+                page={currentPage}
+                onChange={(event, page) => setCurrentPage(page)}
+              />
+            </div>
+          </Stack>
+        </>
+      )}
     </section>
   );
 }
