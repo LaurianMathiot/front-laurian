@@ -8,7 +8,7 @@ function PhotosGrid() {
   const [remainingVotes, setRemainingVotes] = useState(3);
   const [AddClass, setAddClass] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  localStorage.clear();
+  // localStorage.clear();
 
   // Fonction pour ouvrir la modale
   function openModal(imageSrc) {

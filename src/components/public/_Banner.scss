@@ -75,8 +75,8 @@
   // ANIMATIION
 
   .img-container {
-    height: 65vh;
-    width: 65vh;
+    height: 538px;
+    width: 538px;
     overflow: hidden;
     position: relative;
 
@@ -91,6 +91,7 @@
     .anim-imgs {
       position: absolute;
       z-index: -1;
+      overflow: hidden;
     }
 
     .a1 {
@@ -99,7 +100,7 @@
       left: 10px;
       width: 170px;
       height: 177px;
-      animation: a1 15s linear infinite;
+      animation: a1 10s linear infinite;
       animation-delay: 7s;
 
       @keyframes a1 {
@@ -121,7 +122,7 @@
       left: 10px;
       width: 170px;
       height: 135px;
-      animation: a2 15s linear infinite;
+      animation: a2 10s linear infinite;
       // animation-delay: 4s;
 
       @keyframes a2 {
@@ -148,7 +149,7 @@
       left: 10px;
       width: 170px;
       height: 108px;
-      animation: a2 15s linear infinite;
+      animation: a2 10s linear infinite;
       // animation-delay: 4s;
 
       @keyframes a2 {
@@ -173,7 +174,7 @@
       left: 10px;
       width: 170px;
       height: 65px;
-      animation: a4 15s linear infinite;
+      animation: a4 10s linear infinite;
       animation-delay: 0;
 
       @keyframes a4 {
@@ -259,7 +260,7 @@
       right: 3px;
       width: 180px;
       height: 100px;
-      animation: c3 15s linear infinite;
+      animation: c3 10s linear infinite;
       animation-delay: 8s;
 
       @keyframes c3 {

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 const UserUploadForm = () => {
   const token = Cookies.get("jwt");
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
   const [isDragging, setIsDragging] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleDragOver = (e) => {
     setIsDragging(true);
@@ -71,6 +75,24 @@ const UserUploadForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/connexion");
+    } else {
+      try {
+        const user = jwtDecode(jwt);
+        if (user.data.id !== 2) {
+          Cookies.remove("jwt");
+          navigate("/connexion");
+        }
+      } catch (error) {
+        console.error("Erreur lors du décodage du jeton JWT :", error);
+        navigate("/connexion");
+      }
+    }
+  }, []);
 
   return (
     <section className="bg-upload">

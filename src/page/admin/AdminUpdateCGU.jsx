@@ -5,9 +5,14 @@ import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function AdminUpdateCGU() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  const navigate = useNavigate();
 
   const fetchCGU = async () => {
     const response = await fetch(`http://localhost:3000/api/CGU`);
@@ -57,9 +62,23 @@ function AdminUpdateCGU() {
   };
 
   useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/connexion");
+    } else {
+      try {
+        const user = jwtDecode(jwt);
+        if (user.data.id !== 1) {
+          Cookies.remove("jwt");
+          navigate("/connexion");
+        }
+      } catch (error) {
+        console.error("Erreur lors du décodage du jeton JWT :", error);
+        navigate("/connexion");
+      }
+    }
     fetchCGU();
   }, []);
-
   return (
     <>
       <AdminHeader />

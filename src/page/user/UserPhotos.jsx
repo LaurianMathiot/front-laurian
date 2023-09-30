@@ -4,9 +4,12 @@ import UserFooter from "../../components/user/UserFooter";
 import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
 import { ImageList, ImageListItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function UserPhotos() {
   const [userPhotos, setUserPhotos] = useState([]);
+
+  const navigate = useNavigate();
 
   // Fonction pour ouvrir la modale
   function openModal(imageSrc) {
@@ -75,6 +78,21 @@ function UserPhotos() {
   };
 
   useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/connexion");
+    } else {
+      try {
+        const user = jwtDecode(jwt);
+        if (user.data.id !== 2) {
+          Cookies.remove("jwt");
+          navigate("/connexion");
+        }
+      } catch (error) {
+        console.error("Erreur lors du décodage du jeton JWT :", error);
+        navigate("/connexion");
+      }
+    }
     fetchUserPhotos();
   }, []);
 

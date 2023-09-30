@@ -3,9 +3,14 @@ import AdminHeader from "../../components/admin/AdminHeader";
 import Swal from "sweetalert2";
 import UserFooter from "../../components/user/UserFooter";
 import { ImageList, ImageListItem } from "@mui/material";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const AdminValidatePhoto = () => {
   const [images, setImages] = useState([]);
+
+  const navigate = useNavigate();
 
   // Fonction pour ouvrir la modale
   function openModal(imageSrc) {
@@ -114,6 +119,21 @@ const AdminValidatePhoto = () => {
   );
 
   useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/connexion");
+    } else {
+      try {
+        const user = jwtDecode(jwt);
+        if (user.data.id !== 1) {
+          Cookies.remove("jwt");
+          navigate("/connexion");
+        }
+      } catch (error) {
+        console.error("Erreur lors du décodage du jeton JWT :", error);
+        navigate("/connexion");
+      }
+    }
     fetchValidePhoto();
   }, []);
 

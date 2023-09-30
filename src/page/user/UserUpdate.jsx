@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserHeader from "../../components/user/UserHeader";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
 import UserFooter from "../../components/user/UserFooter";
+import { useNavigate } from "react-router-dom";
 
 function UserUpdate() {
   const [actualPassword, setactualPassword] = useState("");
@@ -11,6 +12,8 @@ function UserUpdate() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -98,6 +101,23 @@ function UserUpdate() {
       );
     }
   };
+
+  useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/connexion");
+    } else {
+      try {
+        const user = jwtDecode(jwt);
+        if (user.data.id !== 2) {
+          navigate("/connexion");
+        }
+      } catch (error) {
+        console.error("Erreur lors du décodage du jeton JWT :", error);
+        navigate("/connexion");
+      }
+    }
+  }, []);
 
   return (
     <>
